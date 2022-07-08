@@ -13,12 +13,20 @@ function NotFound() {
           <p className='mt-6 lg:text-lg text-white'>This page does not exist, please go to one this links</p>
           <p>
             Go to{' '}
-            <Link to='/dashboard'>
+            <Link to='/dashboard'>{' '}
               <span className='text-lime-600 font-semibold'>Dashboard</span>
             </Link>{' '}
             <span>or</span>{' '}
             <Link to='/unis'>
               <span className='text-lime-600 font-semibold'>Universities List</span>
+            </Link>
+            <span>or</span>{' '}
+            <Link to='/login'>
+              <span className='text-lime-600 font-semibold'>Login</span>
+            </Link>
+            <span>or</span>{' '}
+            <Link to='/register'>
+              <span className='text-lime-600 font-semibold'>Register</span>
             </Link>
           </p>
         </div>

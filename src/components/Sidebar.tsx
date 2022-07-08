@@ -2,15 +2,16 @@ import { useNavigate, NavLink } from 'react-router-dom'
 import useStore from '../store'
 import { SidebarItem } from './SidebarItem'
 import { sidebarAdminRoutes, sidebarUserRoutes } from '../constants/routes'
+import logo from '../assets/logo.png'
 
 const Sidebar = () => {
   const { user } = useStore()
 
-  if (user?.role.find(role => role === 'admin')) return (
+  if (user?.role.find(role => role === 'admin') || user?.role.find(role => role === 'dev')) return (
     <div className='sm:w-20 md:w-64 bg-slate-800'>
       <div className='py-4 px-6'>
         <NavLink to='/'>
-          <img src='/logo.png' alt='Frozt Enterprise Logo' />
+          <img src={logo} alt='Frozt Enterprise Logo' />
         </NavLink>
       </div>
 
@@ -35,10 +36,10 @@ const Sidebar = () => {
   )
 
   if (user?.role.find(role => role === 'user')) return (
-    <div className='sm:w-20 md:w-64 bg-slate-800 h-full'>
+    <div className='sm:w-20 md:w-64 bg-slate-800'>
       <div className='py-4 px-6'>
         <NavLink to='/'>
-          <img src='/logo.png' alt='Frozt Enterprise Logo' />
+          <img src={logo} alt='Frozt Enterprise Logo' />
         </NavLink>
       </div>
 
