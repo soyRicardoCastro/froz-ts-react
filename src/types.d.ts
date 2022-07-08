@@ -34,7 +34,7 @@ export interface User {
     phone: string
     address: string
     gender: string
-    universities?: University[]
+    universities?: Array<University['body']>
     completedTask: number
     role: Array<Role>
     createdAt: Date
