@@ -43,7 +43,7 @@ function App() {
 
       {/* Authenticated user */}
       <Route element={<RequireAuth allowedRoles={['admin', 'user', 'agent', 'dev']} />}>
-        <Route path='/dashboard' element={<ComingSoon />} />
+        <Route path='/dashboard' element={<Profile />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/user/unis' element={<UserUnis />} />
         <Route path='/unis' element={<Unis />} />
