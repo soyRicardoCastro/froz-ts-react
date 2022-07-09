@@ -23,15 +23,15 @@ function ComingSoon() {
               <span className="text-lime-600 font-semibold">
                 Universities List
               </span>
-            </Link>
+            </Link>{' '}
             <span>or</span>{' '}
             <Link to="/login">
               <span className="text-lime-600 font-semibold">Login</span>
-            </Link>
+            </Link>{' '}
             <span>or</span>{' '}
             <Link to="/register">
               <span className="text-lime-600 font-semibold">Register</span>
-            </Link>
+            </Link>{' '}
           </p>
         </div>
       </div>

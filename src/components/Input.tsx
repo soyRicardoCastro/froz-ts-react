@@ -9,7 +9,7 @@ interface Props {
   }
 }
 
-function Input({ type, placeholder, id, label }: Props['body']) {
+function Input({ type, placeholder, id, label, ...props }: Props['body']) {
   return (
     <>
       <label htmlFor={id}>{label}</label>
@@ -21,6 +21,7 @@ function Input({ type, placeholder, id, label }: Props['body']) {
           autoComplete="off"
           required
           className="my-3 w-full border-none bg-transparent outline-none focus:outline-none"
+          {...props}
         />
       </div>
     </>

@@ -63,24 +63,35 @@ function Login() {
 
             <form onSubmit={handleSubmit(onSubmit)}>
               <div>
-                <Input
-                  id="email"
-                  label="Email"
-                  placeholder="janedoe@example.com"
-                  type="text"
-                  {...register('email')}
-                />
+                <label htmlFor="email">Email</label>
+                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-green-400 text-gray-900">
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="example@mail.com"
+                    autoComplete="off"
+                    required
+                    className="my-3 w-full border-none bg-transparent outline-none focus:outline-none"
+                    {...register('email')}
+                  />
+                </div>
+
                 <p>{errors.email?.message}</p>
               </div>
 
               <div>
-                <Input
-                  id="password"
-                  label="Password"
-                  placeholder="******"
-                  type="password"
-                  {...register('password')}
-                />
+                <label htmlFor="password">Password</label>
+                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-green-400 text-gray-900">
+                  <input
+                    type="password"
+                    id="password"
+                    placeholder="******"
+                    autoComplete="off"
+                    required
+                    className="my-3 w-full border-none bg-transparent outline-none focus:outline-none"
+                    {...register('password')}
+                  />
+                </div>
 
                 <p>{errors.password?.message}</p>
               </div>

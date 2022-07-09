@@ -55,101 +55,148 @@ function Register() {
 
             <form onSubmit={handleSubmit(onSubmit)}>
               <div>
-                <Input
-                  id="email"
-                  label="Email"
-                  type="email"
-                  placeholder="jane.doe@example.com"
-                  {...register('email')}
-                />
+                <label htmlFor="email">Email</label>
+                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-green-400 text-gray-900">
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="example@mail.com"
+                    autoComplete="off"
+                    required
+                    className="my-3 w-full border-none bg-transparent outline-none focus:outline-none"
+                    {...register('email')}
+                  />
+                </div>
                 <p>{errors.email?.message}</p>
               </div>
 
               <div>
-                <Input
-                  id="email"
-                  label="First Name"
-                  type="text"
-                  placeholder="Jane Doe"
-                  {...register('firstName')}
-                />
+                <label htmlFor="firstName">First Name</label>
+                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-green-400 text-gray-900">
+                  <input
+                    type="text"
+                    id="firstName"
+                    placeholder="Jane Ari"
+                    autoComplete="off"
+                    required
+                    className="my-3 w-full border-none bg-transparent outline-none focus:outline-none"
+                    {...register('firstName')}
+                  />
+                </div>
                 <p>{errors.firstName?.message}</p>
               </div>
 
               <div>
-                <Input
-                  id="lastName"
-                  label="Last Name"
-                  type="text"
-                  placeholder="Jane Doe"
-                  {...register('lastName')}
-                />
+                <label htmlFor="lastName">Last Name</label>
+                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-green-400 text-gray-900">
+                  <input
+                    type="text"
+                    id="lastName"
+                    placeholder="Doe Eri"
+                    autoComplete="off"
+                    required
+                    className="my-3 w-full border-none bg-transparent outline-none focus:outline-none"
+                    {...register('lastName')}
+                  />
+                </div>
                 <p>{errors.lastName?.message}</p>
               </div>
 
               <div>
-                <Input
-                  id="password"
-                  label="Password"
-                  type="password"
-                  placeholder="*********"
-                  {...register('password')}
-                />
+                <label htmlFor="password">Password</label>
+                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-green-400 text-gray-900">
+                  <input
+                    type="password"
+                    id="password"
+                    placeholder="******"
+                    autoComplete="off"
+                    required
+                    className="my-3 w-full border-none bg-transparent outline-none focus:outline-none"
+                    {...register('password')}
+                  />
+                </div>
                 <p>{errors.password?.message}</p>
               </div>
 
               <div>
-                <Input
-                  id="confirmpassword"
-                  label="Confirm Password"
-                  type="password"
-                  placeholder="*********"
-                  {...register('passwordConfirmation')}
-                />
+                <label htmlFor="passwordConfirmation">
+                  Password Confirmation
+                </label>
+                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-green-400 text-gray-900">
+                  <input
+                    type="password"
+                    id="passwordConfirmation"
+                    placeholder="******"
+                    autoComplete="off"
+                    required
+                    className="my-3 w-full border-none bg-transparent outline-none focus:outline-none"
+                    {...register('passwordConfirmation')}
+                  />
+                </div>
                 <p>{errors.passwordConfirmation?.message}</p>
               </div>
 
               <div>
-                <Input
-                  id="age"
-                  label="Age"
-                  type="text"
-                  placeholder="19"
-                  {...register('age')}
-                />
+                <label htmlFor="age">Age</label>
+                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-green-400 text-gray-900">
+                  <input
+                    type="text"
+                    id="age"
+                    placeholder="19"
+                    autoComplete="off"
+                    required
+                    className="my-3 w-full border-none bg-transparent outline-none focus:outline-none"
+                    {...register('age')}
+                  />
+                </div>
                 <p>{errors.age?.message}</p>
               </div>
 
               <div>
-                <Input
-                  id="gender"
-                  label="Gender"
-                  type="text"
-                  placeholder="Female"
-                  {...register('gender')}
-                />
+                <label htmlFor="gender">Gender</label>
+                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-green-400 text-gray-900">
+                  <input
+                    type="text"
+                    id="gender"
+                    placeholder="Female"
+                    autoComplete="off"
+                    required
+                    className="my-3 w-full border-none bg-transparent outline-none focus:outline-none"
+                    {...register('gender')}
+                  />
+                </div>
                 <p>{errors.gender?.message}</p>
               </div>
 
               <div>
-                <Input
-                  id="address"
-                  label="Address"
-                  type="text"
-                  placeholder="Street +12 Venecia -a"
-                  {...register('address')}
-                />
+                <label htmlFor="address">Address</label>
+                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-green-400 text-gray-900">
+                  <input
+                    type="text"
+                    id="address"
+                    placeholder="Street 121 venecian u."
+                    autoComplete="off"
+                    required
+                    className="my-3 w-full border-none bg-transparent outline-none focus:outline-none"
+                    {...register('address')}
+                  />
+                </div>
                 <p>{errors.address?.message}</p>
               </div>
 
               <div>
-                <Input
-                  id="phone"
-                  label="Phone"
-                  type="text"
-                  placeholder="+1 123 132 567"
-                  {...register('phone')}
-                />
+                <label htmlFor="phone">Phone</label>
+                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-green-400 text-gray-900">
+                  <input
+                    type="text"
+                    id="phone"
+                    placeholder="+112 3123 4 123"
+                    autoComplete="off"
+                    required
+                    className="my-3 w-full border-none bg-transparent outline-none focus:outline-none"
+                    {...register('phone')}
+                  />
+                </div>
                 <p>{errors.phone?.message}</p>
               </div>
 
