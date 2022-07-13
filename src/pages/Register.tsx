@@ -2,13 +2,13 @@ import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Input } from '../components'
 import { registerSchema, RegisterUserInput } from '../schema/auth.schema'
 import axios from '../services/axios'
 import logo from '../assets/logo.png'
 
 function Register() {
   const [registerError, setRegisterError] = useState<any | null>(null)
+  const [loading, setLoading] = useState<boolean>(false)
   const {
     register,
     formState: { errors },
@@ -21,17 +21,19 @@ function Register() {
 
   async function onSubmit(values: RegisterUserInput) {
     try {
-      console.log(values)
-      console.log('Enviando..xd')
-      const res = await axios.post('/api/users', values)
-      console.log(res)
+      setLoading(true)
+      await axios.post('/api/users', values)
       nav('/', { replace: true })
     } catch (e: any) {
+      if (e.code === 409) {
+        setRegisterError('Upps.. you can not use this email')
+      }
+
       setRegisterError(e.message)
+
+      setLoading(false)
     }
   }
-
-  console.log({ errors })
 
   return (
     <main className="relative min-h-screen w-full bg-slate-800">
@@ -56,7 +58,7 @@ function Register() {
             <form onSubmit={handleSubmit(onSubmit)}>
               <div>
                 <label htmlFor="email">Email</label>
-                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-green-400 text-gray-900">
+                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900">
                   <input
                     type="email"
                     id="email"
@@ -72,7 +74,7 @@ function Register() {
 
               <div>
                 <label htmlFor="firstName">First Name</label>
-                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-green-400 text-gray-900">
+                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900">
                   <input
                     type="text"
                     id="firstName"
@@ -88,7 +90,7 @@ function Register() {
 
               <div>
                 <label htmlFor="lastName">Last Name</label>
-                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-green-400 text-gray-900">
+                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900">
                   <input
                     type="text"
                     id="lastName"
@@ -104,7 +106,7 @@ function Register() {
 
               <div>
                 <label htmlFor="password">Password</label>
-                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-green-400 text-gray-900">
+                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900">
                   <input
                     type="password"
                     id="password"
@@ -122,7 +124,7 @@ function Register() {
                 <label htmlFor="passwordConfirmation">
                   Password Confirmation
                 </label>
-                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-green-400 text-gray-900">
+                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900">
                   <input
                     type="password"
                     id="passwordConfirmation"
@@ -138,7 +140,7 @@ function Register() {
 
               <div>
                 <label htmlFor="age">Age</label>
-                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-green-400 text-gray-900">
+                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900">
                   <input
                     type="text"
                     id="age"
@@ -154,7 +156,7 @@ function Register() {
 
               <div>
                 <label htmlFor="gender">Gender</label>
-                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-green-400 text-gray-900">
+                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900">
                   <input
                     type="text"
                     id="gender"
@@ -170,7 +172,7 @@ function Register() {
 
               <div>
                 <label htmlFor="address">Address</label>
-                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-green-400 text-gray-900">
+                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900">
                   <input
                     type="text"
                     id="address"
@@ -186,7 +188,7 @@ function Register() {
 
               <div>
                 <label htmlFor="phone">Phone</label>
-                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-green-400 text-gray-900">
+                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900">
                   <input
                     type="text"
                     id="phone"
@@ -200,12 +202,21 @@ function Register() {
                 <p>{errors.phone?.message}</p>
               </div>
 
-              <button
-                type="submit"
-                className="w-full rounded-2xl border-b-4 border-b-lime-600 bg-lime-500 py-3 font-bold text-white hover:bg-lime-400 active:translate-y-[0.125rem] active:border-b-lime-700 my-4"
-              >
-                REGISTER
-              </button>
+              {loading ? (
+                <button
+                  disabled
+                  className="w-full rounded-2xl border-b-4 border-b-lime-600 bg-lime-500 py-3 font-bold text-white my-4"
+                >
+                  Loading...
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  className="w-full rounded-2xl border-b-4 border-b-lime-600 bg-lime-500 py-3 font-bold text-white hover:bg-lime-400 active:translate-y-[0.125rem] active:border-b-lime-700 my-4"
+                >
+                  REGISTER
+                </button>
+              )}
             </form>
             <p className="text-white text-sm">
               Go to{' '}

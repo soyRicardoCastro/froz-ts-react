@@ -3,7 +3,6 @@ import { useNavigate, Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { AxiosResponse } from 'axios'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Input } from '../components'
 import axios from '../services/axios'
 import { User } from '../types'
 import { loginSchema, LoginInput } from '../schema/auth.schema'
@@ -12,6 +11,7 @@ import logo from '../assets/logo.png'
 
 function Login() {
   const [loginError, setLoginError] = useState<any | null>(null)
+  const [loading, setLoading] = useState<boolean>(false)
   const {
     register,
     formState: { errors },
@@ -27,15 +27,22 @@ function Login() {
   async function onSubmit(values: LoginInput) {
     try {
       console.log(values)
+      console.log(loginError)
+      setLoading(true)
       const { data }: AxiosResponse<User['body']> = await axios.post(
         '/api/login',
         values
       )
-      console.log(data)
+      setLoading(false)
       setUser(data)
       nav('/', { replace: true })
     } catch (e: any) {
+      if (e.status === 409) {
+        console.log('409 pe')
+      }
+      console.log(e)
       setLoginError(e.message)
+      setLoading(false)
     }
   }
 
@@ -59,12 +66,14 @@ function Login() {
           <div className="space-y-4">
             <h1 className="text-4xl font-bold mb-6 text-center">Log in</h1>
 
-            <p className="text-center text-red-500 text-md">{loginError}</p>
+            <p className="text-center text-red-500 text-md">
+              {loginError && 'Wrong email or password'}
+            </p>
 
             <form onSubmit={handleSubmit(onSubmit)}>
               <div>
                 <label htmlFor="email">Email</label>
-                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-green-400 text-gray-900">
+                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900">
                   <input
                     type="email"
                     id="email"
@@ -81,7 +90,7 @@ function Login() {
 
               <div>
                 <label htmlFor="password">Password</label>
-                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-green-400 text-gray-900">
+                <div className="w-full my-2 rounded-2xl bg-gray-200 px-4 ring-2 ring-gray-100 focus-within:ring-lime-400 text-gray-900">
                   <input
                     type="password"
                     id="password"
@@ -96,12 +105,21 @@ function Login() {
                 <p>{errors.password?.message}</p>
               </div>
 
-              <button
-                type="submit"
-                className="w-full rounded-2xl border-b-4 border-b-lime-600 bg-lime-500 py-3 font-bold text-white hover:bg-lime-400 active:translate-y-[0.125rem] active:border-b-lime-700 my-4"
-              >
-                LOG IN
-              </button>
+              {loading ? (
+                <button
+                  disabled
+                  className="w-full rounded-2xl border-b-4 border-b-lime-600 bg-lime-500 py-3 font-bold text-white my-4"
+                >
+                  Loading...
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  className="w-full rounded-2xl border-b-4 border-b-lime-600 bg-lime-500 py-3 font-bold text-white hover:bg-lime-400 active:translate-y-[0.125rem] active:border-b-lime-700 my-4"
+                >
+                  LOG IN
+                </button>
+              )}
             </form>
             <p className="text-white text-sm">
               Go to{' '}

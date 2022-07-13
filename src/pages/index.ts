@@ -9,6 +9,7 @@ export { default as Tasks } from './Tasks'
 export { default as Task } from './Task'
 export { default as Unis } from './Unis'
 export { default as Uni } from './Uni'
+export { default as CreateUni } from './CreateUni'
 
 export { default as ComingSoon } from './ComingSoon'
 export { default as Unauthorized } from './Unauthorized'
