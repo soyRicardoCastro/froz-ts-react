@@ -12,7 +12,8 @@ import {
   Unis,
   Uni,
   Unauthorized,
-  NotFound
+  NotFound,
+  CreateUni
 } from './pages'
 import { Routes, Route } from 'react-router-dom'
 import { RequireAuth } from './components'
@@ -35,7 +36,7 @@ function App() {
         <Route path='/create/admin' element={<ComingSoon />} />
         <Route path='/create/agent' element={<ComingSoon />} />
         <Route path='/create/task' element={<ComingSoon />} />
-        <Route path='/create/university' element={<ComingSoon />} />
+        <Route path='/create/university' element={<CreateUni />} />
 
         <Route path='/users' element={<Users />} />
         <Route path='/users/:id' element={<User />} />
