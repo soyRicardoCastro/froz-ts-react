@@ -1,3 +1,23 @@
+export interface Career {
+  name: string
+}
+
+export interface Coach {
+  name: string
+  email: string
+  phone: string
+  gender?: string
+}
+
+export interface CreateUniForm {
+  name: string
+  state: string
+  academicRank: string
+  division: string
+  careers: Career[]
+  coachs: Coach[]
+}
+
 export interface University {
   body: {
     _id: string
