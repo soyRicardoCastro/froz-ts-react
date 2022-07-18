@@ -1,13 +1,15 @@
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
+// import { toast } from 'react-toastify'
 import { Layout } from '../components'
 import { useUni } from '../query'
+// import axios from '../services/axios'
 
 function Uni() {
   const params = useParams()
   const id = params.id as string
   const { data: uni, isLoading, isFetching, error } = useUni(id)
 
-  console.log(uni)
+  const nav = useNavigate()
 
   return (
     <Layout
@@ -61,6 +63,18 @@ function Uni() {
               </p>
             </div>
           ))}
+
+          {/* <button
+          className="px-3 py-2 w-40 rounded-full bg-lime-500 text-white"
+          onClick={async () => {
+            toast.info('Deleting University...')
+            nav('/unis')
+            await axios.delete(`/api/users/${uni?._id}`)
+            toast.success('University deleted successfully')
+          }}
+        >
+          Delete University
+        </button> */}
         </div>
       </div>
     </Layout>
