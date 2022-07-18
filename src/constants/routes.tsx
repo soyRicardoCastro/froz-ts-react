@@ -5,7 +5,7 @@ import {
   CollectionIcon,
   UserCircleIcon,
   TableIcon,
-} from '@heroicons/react/outline';
+} from '@heroicons/react/outline'
 
 const s = 'h-5 w-5 text-gray-400 mr-2 group-hover:text-white'
 
@@ -76,11 +76,16 @@ export const sidebarAdminRoutes = [
       {
         label: 'Create Task',
         path: '/create/task',
-        icon: <CollectionIcon className={s} />
-      }
+        icon: <CollectionIcon className={s} />,
+      },
+      {
+        label: 'Send Messages',
+        path: '/sendMessages',
+        icon: <CollectionIcon className={s} />,
+      },
     ],
   },
-];
+]
 
 export const sidebarUserRoutes = [
   {
@@ -119,6 +124,11 @@ export const sidebarUserRoutes = [
       {
         label: 'My Tasks',
         path: '/tasks',
+        icon: <CollectionIcon className={s} />,
+      },
+      {
+        label: 'Send Messages',
+        path: '/sendMessages',
         icon: <CollectionIcon className={s} />,
       },
     ],
