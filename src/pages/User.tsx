@@ -1,12 +1,16 @@
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { Layout } from '../components'
 import { useUser } from '../query'
+import axios from '../services/axios'
 
 function User() {
   const params = useParams()
   const id = params.id as string
 
   const { data: user, isLoading, isFetching, error } = useUser(id)
+
+  const nav = useNavigate()
 
   return (
     <Layout
@@ -45,6 +49,17 @@ function User() {
           Gender:{' '}
           <span className="text-white font-semibold">{user?.gender}</span>
         </h2>
+
+        <button
+          className="px-3 py-2 w-40 rounded-full bg-lime-500 text-white"
+          onClick={async () => {
+            toast.info('Deleting User...')
+            await axios.delete(`/api/users/${user?._id}`)
+            nav('/users')
+          }}
+        >
+          Delete User
+        </button>
       </div>
     </Layout>
   )
