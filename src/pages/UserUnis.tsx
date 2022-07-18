@@ -6,13 +6,15 @@ import useStore from '../store'
 function UserUnis() {
   const { user } = useStore()
 
-  if (user?.universities?.length === 0)
+  if (!user?.universities?.length)
     return (
       <Layout
         title={`Universities list of ${user?.firstName}`}
         category="Users"
       >
-        <h1>You don't have universities yet</h1>
+        <h1 className="mx-6 text-gray-200 text-md">
+          You don't have universities yet
+        </h1>
       </Layout>
     )
 
@@ -32,12 +34,12 @@ function UserUnis() {
               key={uni._id}
               className="bg-white dark:border-gray-700 dark:bg-gray-800"
             >
-              <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+              <Table.Cell className="whitespace-nowrap font-medium text-white">
                 <Link to={`/unis/${uni._id}`}>{uni.name}</Link>
               </Table.Cell>
-              <Table.Cell>{uni.state}</Table.Cell>
-              <Table.Cell>{uni.division}</Table.Cell>
-              <Table.Cell>{uni.academicRank}</Table.Cell>
+              <Table.Cell className="text-white">{uni.state}</Table.Cell>
+              <Table.Cell className="text-white">{uni.division}</Table.Cell>
+              <Table.Cell className="text-white">{uni.academicRank}</Table.Cell>
               <Table.Cell>
                 {uni.coachs.map((item, i) => (
                   <div key={i} className="mb-2">
