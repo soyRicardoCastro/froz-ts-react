@@ -15,13 +15,13 @@ function Profile() {
         />
         <div className="w-4/5 mx-auto gap-2 flex flex-col items-center">
           <h2 className="text-3xl text-white capitalize">{`${user?.firstName} ${user?.lastName}`}</h2>
-          <p className="text-xl font-semibold text-gray-400 capitalize">
+          <div className="text-xl font-semibold text-gray-400 capitalize">
             {user?.role.map((role) => (
               <p key={role} className="capitalize">
                 {role}{' '}
               </p>
             ))}
-          </p>
+          </div>
           <p className="text-md text-gray-200">
             <span className="font-semibold">Email: </span> {user?.email} |{' '}
             <span className="font-semibold">Phone: </span>
