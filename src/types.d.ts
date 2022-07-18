@@ -49,7 +49,7 @@ export interface User {
     _id: string
     firstName: string
     lastName: string
-    age: number | string
+    age: string
     email: string
     phone: string
     address: string
@@ -84,3 +84,9 @@ interface UserTask {
     updatedAt: Date
   }
 }
+
+// * Types for table sorting
+export type UniKeys = keyof University['body']
+export type UserKeys = keyof User['body']
+
+export type SortOrder = 'ascn' | 'desc'
