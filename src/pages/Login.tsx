@@ -26,7 +26,6 @@ function Login() {
 
   async function onSubmit(values: LoginInput) {
     try {
-      console.log(values)
       console.log(loginError)
       setLoading(true)
       const { data }: AxiosResponse<User['body']> = await axios.post(
@@ -35,11 +34,8 @@ function Login() {
       )
       setLoading(false)
       setUser(data)
-      nav('/', { replace: true })
+      nav('/dashboard', { replace: true })
     } catch (e: any) {
-      if (e.status === 409) {
-        console.log('409 pe')
-      }
       console.log(e)
       setLoginError(e.message)
       setLoading(false)
