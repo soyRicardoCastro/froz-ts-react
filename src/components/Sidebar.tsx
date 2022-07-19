@@ -41,16 +41,19 @@ const Sidebar = () => {
       </div>
     )
 
-  if (user?.role.find((role) => role === 'user'))
+  if (
+    user?.role.find((role) => role === 'user') ||
+    user?.role.find((role) => role === 'agent')
+  )
     return (
-      <div className="sm:w-20 md:w-64 bg-slate-800">
+      <div className="relative w-[262px] bg-slate-800">
         <div className="py-4 px-6">
           <NavLink to="/">
-            <img src={logo} alt="Frozt Enterprise Logo" className="fixed" />
+            <img src={logo} alt="Frozt Enterprise Logo" className="" />
           </NavLink>
         </div>
 
-        <div className="mt-24 fixed overflow-y-auto overflow-x-hidden h-[85vh] sm:w-20 md:w-60">
+        <div className="mt-[15px] overflow-x-hidden h-[85vh] sm:w-20 md:w-60 pb-16">
           {sidebarUserRoutes.map((item, i) => (
             <div key={i} className="mr-2">
               <h3 className="mx-6 overflow-hidden mb-2 text-xs text-gray-100 uppercase tracking-widest">
