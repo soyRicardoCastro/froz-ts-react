@@ -23,7 +23,7 @@ function Register() {
     try {
       setLoading(true)
       await axios.post('/api/users', values)
-      nav('/', { replace: true })
+      nav('/login', { replace: true })
     } catch (e: any) {
       if (e.code === 409) {
         setRegisterError('Upps.. you can not use this email')
