@@ -37,7 +37,7 @@ function Unis() {
   const [userUnis, setUserUnis] = useState<Array<string>>([])
   const [search, setSearch] = useState<string>('')
 
-  const { data: unis, error, isFetching, isLoading } = useUnis()
+  const { data: unis, error, isFetching, isLoading, refetch } = useUnis()
   const id = user?._id as string
   const { data } = useUser(id)
 
@@ -141,6 +141,8 @@ function Unis() {
       await axios.post(`/api/add-user-uni/${user._id}`, {
         universities: userUnis,
       })
+      refetch()
+      setUser(data)
       toast.success('Added succesfully')
     } catch (e: any) {
       toast.error(e)
